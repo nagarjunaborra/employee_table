@@ -1,0 +1,45 @@
+<h1><u>Employee Information</u></h1>
+
+<style>
+body{background-color:indianred}
+</style>
+
+<table style="width:100%">
+  <thead>
+    <tr>
+	  <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th><%= link_to "Age", :sort => "age" %></th>
+      <th><%= link_to "Salary", :sort => "salary" %></th>
+      <th><%= link_to "Department", :sort => "department" %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+	  <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.age %></td>
+        <td><%= user.salary %></td>
+        <td><%= user.department %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<h3><a href="/users?where=retirement">Retirement</a></h3>
+<h3><a href="/users?order=highest salary">Employee with Highest Salary</a></h3>
+<h3><a href="/users?order=Top 5 Employees Based on Salary">Top 5 Employees Based on Salary</a></h3>
+<h3><a href="/users?order=Top salaried Employees Based on Department">Top salaried Employees Based on Department</a></h3>
+<h3><a href="/users?order=Top 5 Senior most employees by age">Top 5 Senior most employees by age</a></h3>
+<h3><a href="/users?order=lowest salary but senior most in the company">lowest salary but senior most in the company</a></h3>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
