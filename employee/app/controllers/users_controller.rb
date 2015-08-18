@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @users = User.order(params[:sort])
 	  if params.has_key?(:where) and params[:where]=='retirement'
        @users =User.where("age >60")
-	    elsif params.has_key?(:order) and params[:order]=='highest salary'
+	   elsif params.has_key?(:order) and params[:order]=='highest salary'
       @users =User.order("salary desc").first(1)
 	  elsif params.has_key?(:order) and params[:order]=='Top 5 Employees Based on Salary'
       @users =User.order("salary desc").first(5)
@@ -17,6 +17,11 @@ class UsersController < ApplicationController
       @users =User.order("age asc").last(5)
 	  elsif params.has_key?(:order) and params[:order]=='lowest salary but senior most in the company'
       @users =User.order("age desc").first(1)
+	  elsif params.has_key?(:order) and params[:order]=='first and last'
+	  @users = []
+      @users.push User.order("salary desc").first
+      @users.push User.order("salary desc").last
+
 	  
 	  
 
